@@ -38,8 +38,7 @@ end
 
 def access_token
   return ENV['WLIST_ACCESS_TOKEN'] if ENV['WLIST_ACCESS_TOKEN']
-  puts "Missing $WLIST_ACCESS_TOKEN in environment. Please run:"
-  puts "> wlist login"
+  puts "Missing $WLIST_ACCESS_TOKEN in environment."
   exit -1
 end
 

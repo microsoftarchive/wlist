@@ -21,7 +21,7 @@ To use this tool, you’ll need the following:
 
 * Ruby, should be on your system
 * A client id. You can get one at the [Wunderlist Developer Site](https://developer.wunderlist.com/applications). Once you have it, you’ll want to set it in the `WLIST_CLIENT_ID` environment variable.
-* An access token. You can obtain one by using `wlist login`. Once obtained, set it in the `WLIST_ACCESS_TOKEN` environment variable.
+* An access token. This is tough right now. We’re going to fix this ASAP.
 
 If you try to use `wlist` without a `WLIST_CLIENT_ID` set, you’ll get gently nudged in the right direction:
 
@@ -33,8 +33,7 @@ If you try to use `wlist` without a `WLIST_CLIENT_ID` set, you’ll get gently n
 Likewise with the access token
 
     bash-3.2$ bin/wlist inbox 
-    Missing $WLIST_ACCESS_TOKEN in environment. Please run:
-    > wlist login
+    Missing $WLIST_ACCESS_TOKEN in environment. 
     
 ## An example walk through
 
