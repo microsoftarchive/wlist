@@ -2,7 +2,7 @@
 
 A command-line tool for Wunderlist:
 
-![Screenshoot of wlist](screenshot.png)
+![Screenshoot of wlist](screenshot-small.png)
 
 There are two goals for wlist:
  
@@ -13,6 +13,7 @@ There are two goals for wlist:
 
 wlist is currently under initial development and is quite incomplete. However, it’s already useful as a developer exploration tool, especially when used with `-t` (tracing) and `-j` (json output) flags. 
 
+![Screenshoot of wlist](screenshot.png)
  
 ## Requirements
 
