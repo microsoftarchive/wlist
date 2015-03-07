@@ -1,5 +1,7 @@
 # wlist
 
+![Screenshoot of wlist](screenshot.png)
+
 A command-line tool for Wunderlist with two goals:
  
 1. Provide an easy to use way to explore the API and its output for developers
