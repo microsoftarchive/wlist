@@ -4,16 +4,16 @@ require 'optparse'
 OPTIONS = {}
 OPTIONS_PARSER = OptionParser.new do |opts|
   opts.banner = "Usage: example.rb [options]"
-  opts.on("-t", "--trace", "Trace") do |v|
-    OPTIONS[:trace] = v
+  opts.on("-v", "--verbose", "Show verbose statements") do |v|
+    OPTIONS[:verbose] = v
   end
-  opts.on("-h TITLE", "--title TITLE", String, "Title for a task") do |v|
+  opts.on("-t TITLE", "--title TITLE", "Title for a task") do |v|
     OPTIONS[":title"] = v
   end
-  opts.on("-i N[MANDATORY]", "--id N[MANDATORY]", Integer, "Object identifier") do |v|
+  opts.on("-i ID", "--id ID", Integer, "Object identifier") do |v|
     OPTIONS[:id] = v
   end
-  opts.on("-r N[MANDATORY]", "--revision N[MANDATORY]", Integer, "Object identifier") do |v|
+  opts.on("-r REVISION", "--revision REVISION", Integer, "Object identifier") do |v|
     OPTIONS[:revision] = v
   end
 end
@@ -63,7 +63,7 @@ def curl(url, method="GET", data=nil, headers=access_headers, quiet=false)
   cmd << " -d '#{JSON.generate(data)}'" if data != nil
   cmd << " -X #{method} '#{url}'"
 
-  if !quiet and OPTIONS[:trace]
+  if !quiet and OPTIONS[:verbose]
     puts "curl ".gray.bold + cmd.gray
   end
   response = `curl #{cmd}`
@@ -100,5 +100,11 @@ end
 # INBOX HELPER
 
 def get_inbox_id
-  get("lists").detect {|i| i['list_type'] == 'inbox' }['id']
+  lists = get("lists")
+  if OPTIONS[:verbose]
+    puts "scanning ".gray.bold + "#{lists.size} lists for list_type of inbox".gray
+  end
+  inbox = lists.detect {|i| i['list_type'] == 'inbox' }['id']
+  puts "inbox id: ".gray.bold + "#{inbox}".gray
+  inbox
 end
