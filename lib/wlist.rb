@@ -7,14 +7,20 @@ OPTIONS_PARSER = OptionParser.new do |opts|
   opts.on("-v", "--verbose", "Show verbose statements") do |v|
     OPTIONS[:verbose] = v
   end
-  opts.on("-t TITLE", "--title TITLE", "Title for a task") do |v|
-    OPTIONS[":title"] = v
-  end
   opts.on("-i ID", "--id ID", Integer, "Object identifier") do |v|
     OPTIONS[:id] = v
   end
   opts.on("-r REVISION", "--revision REVISION", Integer, "Object identifier") do |v|
     OPTIONS[:revision] = v
+  end
+  opts.on("-t TITLE", "--title TITLE", "Title for a task") do |v|
+    OPTIONS[":title"] = v
+  end
+  opts.on("-s", "--[no-]star", "Star status") do |v|
+    OPTIONS[:starred] = v
+  end
+  opts.on("-c", "--[no-]complete", "Completed status") do |v|
+    OPTIONS[:completed] = v
   end
 end
 
