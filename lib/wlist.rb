@@ -59,16 +59,14 @@ end
 # NETWORK ACCESS METHODS
 
 def curl(url, method="GET", data=nil, headers=access_headers, quiet=false)
-  if data == nil
-    cmd = "curl -s #{headers} -X #{method} '#{url}'"
-  else
-    cmd = "curl -s #{headers} -X #{method} -d '#{JSON.generate(data)}' '#{url}'"
-  end
+  cmd = "-s #{headers}"
+  cmd << " -d '#{JSON.generate(data)}'" if data != nil
+  cmd << " -X #{method} '#{url}'"
 
   if !quiet and OPTIONS[:trace]
-    puts "Network: ".gray.bold + cmd.gray
+    puts "curl ".gray.bold + cmd.gray
   end
-  response = `#{cmd}`
+  response = `curl #{cmd}`
 end
 
 def get(path)
