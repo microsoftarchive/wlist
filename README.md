@@ -68,7 +68,7 @@ $ wlist inbox
 }
 ```
 
-The JSON returned is a direct map of the inbox list properties on the Wunderlist servers. If `wlist` was just aimed for non-developers, this would probably give us a list of tasks in our inbox, but we want to make sure that we’re reflecting the API appropriately so that you can explore how it works.
+The JSON returned is a direct map of the inbox list properties on the Wunderlist servers. If `wlist` was just aimed for non-developers, it would probably give us a list of tasks in our inbox, but we want to make sure that we’re reflecting the API appropriately so that you can explore how it works.
 
 So, using the inbox properties, we can use the `id` property and get that list:
 
@@ -137,6 +137,29 @@ The `revision` is essential so that the server knows whether or not you have the
   }
 }
 ```
+
+### Pipelining as a shortcut
+
+When `wlist` is run in a pipeline, it can pick up JSON data from a previous command and use that as part of the next request. For example, if we’ve stored the id for our task, we can quickly star it with the following command:
+
+```
+$ wlist task -i 1033100007 | wlist task:update --star
+```
+```json
+{
+ "id": 1033100007,
+ "created_at": "2015-03-08T11:52:26.706Z",
+ "created_by_id": 6007632,
+ "completed": false,
+ "starred": true,
+ "list_id": 105743947,
+ "revision": 18,
+ "title": "Get coffee with Chad",
+ "type": "task"
+}
+```
+
+### Lists
 
 Wunderlist manages more than just an inbox list. It can hold as many lists as you want. To get all the lists a user has access to, use the `lists` command:
 

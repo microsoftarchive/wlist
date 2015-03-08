@@ -2,6 +2,18 @@
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
 
 parse_options
-data = JSON.parse(ARGF.read)
-response = patch("tasks/#{OPTIONS[:id]}", data)
+
+if !STDIN.tty?
+  data = JSON.parse(ARGF.read)
+else
+  data = {}
+end
+
+id = data['id'] || OPTIONS[:id] # fail if neither?
+data['revision'] = OPTIONS[:revision] if OPTIONS[:revision]
+data['title'] = OPTIONS[:title] if OPTIONS[:title]
+data['starred'] = OPTIONS[:starred] if OPTIONS.has_key?(:starred)
+data['completed'] = OPTIONS[:completed] if OPTIONS.has_key?(:completed)
+
+response = patch("tasks/#{id}", data)
 puts JSON.pretty_generate(response)
