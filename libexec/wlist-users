@@ -1,3 +1,10 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
-puts JSON.pretty_generate(get_users)
+
+if ARGV.size == 0
+  puts JSON.pretty_generate(get_users)
+else
+  users = []
+  ARGV.each {|a| users << get_user(a)}
+  puts JSON.pretty_generate(users)
+end

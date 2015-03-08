@@ -1,3 +1,4 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
 puts JSON.pretty_generate(get_user)
+

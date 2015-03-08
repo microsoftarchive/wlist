@@ -79,8 +79,12 @@ end
 
 # DATA ACCESS METHODS
 
-def get_user
-  JSON.parse(get(v1url("user")))
+def get_user(id=nil)
+  if id == nil
+    JSON.parse(get(v1url("user")))
+  else
+    JSON.parse(get(v1url("users/#{id}")))
+  end
 end
 
 def get_users
