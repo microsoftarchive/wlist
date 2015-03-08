@@ -201,9 +201,9 @@ This is exactly equivalent to what we did at the start of the walkthrough: it ge
 
 ### Tracing Requests and getting Curl Commands
 
-In addition to directly working with the Wunderlist API JSON formats, `wlist` gives you the ability to trace what goes into making a particular request. Use the `-t` or `--trace` flag with any command and you’ll see a `curl` command used to make the request. This command can be copied, pasted, and ran by itself.
+In addition to directly working with the Wunderlist API JSON formats, `wlist` gives you the ability to trace what goes into making a particular request. Use the `-v` or `--verbose` flag with any command and you’ll see a `curl` command used to make the request. This command can be copied, pasted, and ran by itself.
 
 ```
-$ wlist list:tasks -i 105743947 -t
+$ wlist list:tasks -i 105743947 -v
 curl -s -H 'Content-Type: application/json' -H 'X-Client-ID: WLIST_CLIENT_ID' -H 'X-Access-Token: WLIST_ACCESS_TOKEN' -X GET 'https://a.wunderlist.com/api/v1/tasks?list_id=105743947'
 ```
