@@ -1,19 +1,16 @@
 # wlist
 
-A command-line tool for Wunderlist:
+A command-line tool for interacting with Wunderlist’s REST- and JSON-based API. It’s currently under initial development, but is already useful as a developer exploration tool, especially when used with the `-t` flag to display the `curl` statements used.
 
-![Screenshoot of wlist](screenshot-small.png)
+![Screenshoot of wlist](screenshot.png)
 
-There are two goals for wlist:
+There are two goals for `wlist`:
  
 1. Provide an easy to use way to explore the API and its output for developers
 2. Allow shell scripting of the API for integrations
 
-## Status
+Comfort with dealing with JSON data structures is assumed.
 
-wlist is currently under initial development and is quite incomplete. However, it’s already useful as a developer exploration tool, especially when used with `-t` (tracing) and `-j` (json output) flags. 
-
-![Screenshoot of wlist](screenshot.png)
  
 ## Requirements
 
