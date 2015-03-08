@@ -205,5 +205,5 @@ In addition to directly working with the Wunderlist API JSON formats, `wlist` gi
 
 ```
 $ wlist list:tasks -i 105743947 -t
-Network: curl -s -H 'Content-Type: application/json' -H 'X-Client-ID: $WLIST_CLIENT_ID' -H 'X-Access-Token: $WLIST_ACCESS_TOKEN' -X GET 'https://a.wunderlist.com/api/v1/tasks?list_id=105743947'
+curl -s -H 'Content-Type: application/json' -H 'X-Client-ID: WLIST_CLIENT_ID' -H 'X-Access-Token: WLIST_ACCESS_TOKEN' -X GET 'https://a.wunderlist.com/api/v1/tasks?list_id=105743947'
 ```
