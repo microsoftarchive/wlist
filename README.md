@@ -68,7 +68,9 @@ $ wlist inbox
 }
 ```
 
-The JSON returned is a direct map of the inbox list properties on the Wunderlist servers. The most important properties are `id` and `revision`. Using the `id` property, we can get what’s in the inbox:
+The JSON returned is a direct map of the inbox list properties on the Wunderlist servers. If `wlist` was just aimed for non-developers, this would probably give us a list of tasks in our inbox, but we want to make sure that we’re reflecting the API appropriately so that you can explore how it works.
+
+So, using the inbox properties, we can use the `id` property and get that list:
 
 ```json
 $ wlist list:tasks -i 105743947
@@ -135,6 +137,67 @@ The `revision` is essential so that the server knows whether or not you have the
   }
 }
 ```
+
+Wunderlist manages more than just an inbox list. It can hold as many lists as you want. To get all the lists a user has access to, use the `lists` command:
+
+```
+$ wlist lists
+```
+
+```json
+[
+  {
+    "id": 81895952,
+    "created_at": "2013-08-09T11:39:08.246Z",
+    "list_type": "list",
+    "public": false,
+    "revision": 2,
+    "title": "Movies to Watch",
+    "type": "list"
+  },
+  {
+    "id": 105743947,
+    "created_at": "2014-03-27T10:21:30.308Z",
+    "list_type": "inbox",
+    "public": false,
+    "revision": 1958,
+    "title": "inbox",
+    "type": "list"
+  }
+]
+```
+
+Then, to get all the tasks for a list, you can use the `list:tasks` command:
+
+```
+$ wlist list:tasks -i 81895952
+```
+```json
+[
+  {
+    "id": 406750264,
+    "created_at": "2013-08-27T02:33:20.493Z",
+    "created_by_id": 6007632,
+    "completed": false,
+    "starred": false,
+    "list_id": 81895952,
+    "revision": 0,
+    "title": "Meet the Parents",
+    "type": "task"
+  }
+]
+```
+
+### Convenience Commands
+
+As benefits its status as a developer aid, the `wlist` commands so far make you think in terms of the API. However, we don’t want it to be bulky to use for everyday use, so we have several convenience commands. The first of these is a way to list the tasks in your inbox:
+
+```
+$ wlist inbox:tasks
+```
+
+This is exactly equivalent to what we did at the start of the walkthrough: it gets the list of tasks after getting the `id` of the current user’s inbox.
+
 
 ### Tracing Requests and getting Curl Commands
 
