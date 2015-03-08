@@ -7,7 +7,7 @@ A command-line tool for interacting with Wunderlist’s REST- and JSON-based API
 There are two goals for `wlist`:
  
 1. Provide an easy to use way to explore the API and its output for developers
-2. Allow shell scripting of the API for integrations
+2. Allow shell scripting of the API for integrations, especially with JSON tools like `jq`
 
 Comfort with dealing with JSON data structures is assumed.
 
