@@ -2,19 +2,25 @@ require 'json'
 require 'optparse'
 
 OPTIONS = {}
-OptionParser.new do |opts|
+OPTIONS_PARSER = OptionParser.new do |opts|
   opts.banner = "Usage: example.rb [options]"
-
   opts.on("-t", "--trace", "Trace") do |v|
     OPTIONS[:trace] = v
   end
-  opts.on("-i", "--info", "Provide Information") do |v|
-    OPTIONS[:info] = v
+  opts.on("-h TITLE", "--title TITLE", String, "Title for a task") do |v|
+    OPTIONS[":title"] = v
   end
-  opts.on("-j", "--json", "Output JSON") do |v|
-    OPTIONS[:json] = v
+  opts.on("-i N[MANDATORY]", "--id N[MANDATORY]", Integer, "Object identifier") do |v|
+    OPTIONS[:id] = v
   end
-end.parse!
+  opts.on("-r N[MANDATORY]", "--revision N[MANDATORY]", Integer, "Object identifier") do |v|
+    OPTIONS[:revision] = v
+  end
+end
+
+def parse_options
+  OPTIONS_PARSER.parse!
+end
 
 class String
   def black;          "\033[30m#{self}\033[0m" end
@@ -65,82 +71,36 @@ def curl(url, method="GET", data=nil, headers=access_headers, quiet=false)
   response = `#{cmd}`
 end
 
-def get(url)
-  curl(url)
+def get(path)
+  url = v1url(path)
+  response = curl(url, "GET")
+  JSON.parse(response)
 end
 
-def post(url, data)
-  curl(url, "POST", data)
+def post(path, data)
+  url = v1url(path)
+  response = curl(url, "POST", data)
+  JSON.parse(response)
 end
 
-def delete(url)
-  curl(url, "DELETE")
+def patch(path, data)
+  url = v1url(path)
+  response = curl(url, "PATCH", data)
+  JSON.parse(response)
 end
 
-# DATA ACCESS METHODS
-
-def get_user(id=nil)
-  if id == nil
-    JSON.parse(get(v1url("user")))
+def delete(path)
+  url = v1url("#{path}")
+  response = curl(url, "DELETE")
+  if response != ""
+    JSON.parse(response)
   else
-    JSON.parse(get(v1url("users/#{id}")))
+    nil
   end
 end
 
-def get_users
-  JSON.parse(get(v1url("users")))
-end
+# INBOX HELPER
 
-def get_inbox
-  get_lists.detect {|i| i['list_type'] == 'inbox' }
-end
-
-def get_list(id)
-  JSON.parse(get(v1url("lists/#{id}")))
-end
-
-def get_lists
-  JSON.parse(get(v1url("lists")))
-end
-
-def get_task(task)
-  if task.instance_of? Hash
-    i = task['id']
-  else
-    i = task
-  end
-  JSON.parse(get(v1url("tasks/#{i}")))
-end
-
-def get_tasks(list)
-  if list.instance_of? Hash
-    i = list['id']
-  else
-    i = list
-  end
-  JSON.parse(get(v1url("tasks?list_id=#{i}")))
-end
-
-def post_task(list, title)
-  if list.instance_of? Hash
-    i = list['id']
-  else
-    i = list
-  end
-  JSON.parse(post(v1url("tasks"), {list_id: i, title: title}))
-end
-
-def delete_task(task)
-  if task.instance_of? String or task.instance_of? Fixnum
-    task = get_task(task)
-    if task['error']
-      puts "Error: ".bold + task['error']['message']
-      return
-    end
-    if OPTIONS[:trace]
-      puts "Intermediate JSON: ".gray.bold + JSON.generate(task).gray
-    end
-  end
-
-  delete(v1url("tasks/#{task['id']}?revision=#{task['revision']}"))
+def get_inbox_id
+  get("lists").detect {|i| i['list_type'] == 'inbox' }['id']
 end

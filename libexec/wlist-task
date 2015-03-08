@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
 
-if ARGV.size == 1
-  puts JSON.pretty_generate(get_task(ARGV[0]))
-else
-  puts "Usage: ".bold.red + "wlist task [id]"
-end
+parse_options
+response = get("tasks/#{OPTIONS[:id]}")
+puts JSON.pretty_generate(response)

@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
-ARGV.each {|a| delete_task(a) }
 
+parse_options
+response = delete("tasks/#{OPTIONS[:id]}?revision=#{OPTIONS[:revision]}")
+puts JSON.pretty_generate(response) if response

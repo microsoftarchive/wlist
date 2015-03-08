@@ -2,6 +2,4 @@
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
 
 parse_options
-
-response = get("users")
-puts JSON.pretty_generate(response)
+puts get_inbox_id

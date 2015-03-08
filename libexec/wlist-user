@@ -1,12 +1,13 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
 
-if ARGV.size == 0
-  puts JSON.pretty_generate(get_user)
-elsif ARGV.size == 1
-  puts JSON.pretty_generate(get_user(ARGV[0]))
+
+parse_options
+
+if OPTIONS[:id]
+  response = get("users/#{OPTIONS[:id]}")
 else
-  puts "Usage: ".bold.red + "wlist user [id]"
+  response = get("user")
 end
 
-
+puts JSON.pretty_generate(response)

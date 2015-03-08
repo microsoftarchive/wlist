@@ -1,8 +1,6 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
-parse_options
 
 parse_options
-puts OPTIONS
-response = get("lists/#{OPTIONS[:id]}")
+response = get("tasks?list_id=#{get_inbox_id}")
 puts JSON.pretty_generate(response)
