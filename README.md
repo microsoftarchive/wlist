@@ -10,8 +10,11 @@ There are two goals for `wlist`:
 2. Allow shell scripting of the API for integrations, especially with JSON tools like `jq`
 
 Comfort with dealing with JSON data structures is assumed.
-
  
+## Installation
+ 
+For now, clone this repository and then put `bin/wlist` on your path somehow.
+
 ## Requirements
 
 To use this tool, you’ll need the following:
@@ -22,15 +25,26 @@ To use this tool, you’ll need the following:
 
 If you try to use `wlist` without a `WLIST_CLIENT_ID` set, you’ll get gently nudged in the right direction:
 
-
-    bash-3.2$ bin/wlist inbox
+    $ bin/wlist inbox
     Missing $WLIST_CLIENT_ID in environment
     Visit https://developer.wunderlist.com/applications and create an app!
 
 Likewise with the access token
 
-    bash-3.2$ bin/wlist inbox 
-    Missing $WLIST_ACCESS_TOKEN in environment. 
+    $ bin/wlist inbox
+    Missing $WLIST_ACCESS_TOKEN in environment.
+
+To make all this easier, I have a fish script that sets these variables for me before calling `wlist`. Here’s what it looks like:     
+    
+    function wlist
+      source ~/.envrc/wunderlist_poke.fish
+      eval $HOME/GitHub/wunderlist/wlist/bin/wlist $argv
+    end
+
+My `~/.envrc/wunderlist_poke.fish` simply has:
+
+    set -x WLIST_CLIENT_ID aaaaaaaaaaaaaaaaaaaaa
+    set -x WLIST_ACCESS_TOKEN aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     
 ## An example walk through
 
