@@ -101,10 +101,10 @@ end
 
 def get_inbox_id
   lists = get("lists")
-  if OPTIONS[:verbose]
-    puts "scanning ".gray.bold + "#{lists.size} lists for list_type of inbox".gray
-  end
   inbox = lists.detect {|i| i['list_type'] == 'inbox' }['id']
-  puts "inbox id: ".gray.bold + "#{inbox}".gray
+  if OPTIONS[:verbose]
+    puts "scanned ".gray.bold + "#{lists.size} lists for list_type of inbox".gray
+    puts "inbox id: ".gray.bold + "#{inbox}".gray
+  end
   inbox
 end
