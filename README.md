@@ -19,7 +19,7 @@ For now, clone this repository and then put `bin/wlist` on your path somehow.
 
 To use this tool, you’ll need the following:
 
-* Ruby, should be on your system
+* Ruby, should be on your system. I’m using 2.2 here. YMMV with other versions
 * A client id. You can get one at the [Wunderlist Developer Site](https://developer.wunderlist.com/applications). Once you have it, you’ll want to set it in the `WLIST_CLIENT_ID` environment variable.
 * An access token. This is tough right now. We’re going to fix this ASAP.
 
@@ -45,7 +45,9 @@ My `~/.envrc/wunderlist_poke.fish` simply has:
 
     set -x WLIST_CLIENT_ID aaaaaaaaaaaaaaaaaaaaa
     set -x WLIST_ACCESS_TOKEN aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    
+
+Yah. Most people use Bash or Zsh. Let’s fix this up for them too so that they don’t have to translate in the mind.
+
 ## An example walk through
 
 Coming soon.
