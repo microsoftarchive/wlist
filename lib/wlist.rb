@@ -95,6 +95,10 @@ def get_inbox
   get_lists.detect {|i| i['list_type'] == 'inbox' }
 end
 
+def get_list(id)
+  JSON.parse(get(v1url("lists/#{id}")))
+end
+
 def get_lists
   JSON.parse(get(v1url("lists")))
 end

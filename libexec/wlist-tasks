@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
 require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
 
-
 if ARGV.size == 1
   puts JSON.pretty_generate(get_list(ARGV[0]))
 else
