@@ -13,8 +13,20 @@ OPTIONS_PARSER = OptionParser.new do |opts|
   opts.on("-r REVISION", "--revision REVISION", Integer, "Object identifier") do |v|
     OPTIONS[:revision] = v
   end
+  opts.on("-j ID", "--list-id ID", Integer, "Object identifier") do |v|
+    OPTIONS[:list_id] = v
+  end
   opts.on("-t TITLE", "--title TITLE", "Title for a task") do |v|
-    OPTIONS[":title"] = v
+    OPTIONS[:title] = v
+  end
+  opts.on("-u URL", "--url URL", "Webhook URL") do |v|
+    OPTIONS[:url] = v
+  end
+  opts.on("-d CONFIG", "--CONFIG CONFIG", "Configuration") do |v|
+    OPTIONS[:config] = v
+  end
+  opts.on("-p TYPE", "--processor-type TYPE", "Processor Type") do |v|
+    OPTIONS[:processor_type] = v
   end
   opts.on("-s", "--[no-]star", "Star status") do |v|
     OPTIONS[:starred] = v

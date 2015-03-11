@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
+
+parse_options
+response = get("webhooks?list_id=#{OPTIONS[:id]}")
+puts JSON.pretty_generate(response)

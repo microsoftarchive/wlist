@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
+
+parse_options
+
+if !STDIN.tty?
+  data = JSON.parse(ARGF.read)
+else
+  data = {}
+end
+
+data['list_id'] = OPTIONS[:list_id] if OPTIONS[:list_id]
+data['url'] = OPTIONS[:url] if OPTIONS[:url]
+data['processor_type'] = OPTIONS[:processor_type] if OPTIONS[:processor_type]
+data['configuration'] = OPTIONS[:config] if OPTIONS[:config]
+
+response = post("webhooks", data)
+puts JSON.pretty_generate(response)
