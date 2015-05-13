@@ -20,7 +20,7 @@ For now, clone this repository and then put `bin/wlist` on your path somehow.
 To use this tool, you’ll need the following:
 
 * Ruby, should be on your system. I’m using 2.2 here. YMMV with other versions
-* A client id. You can get one at the [Wunderlist Developer Site](https://developer.wunderlist.com/applications). Once you have it, you’ll want to set it in the `WLIST_CLIENT_ID` environment variable.
+* A client id. You can get one at the [Wunderlist Developer Site](https://developer.wunderlist.com/apps). Once you have it, you’ll want to set it in the `WLIST_CLIENT_ID` environment variable.
 * An access token. This is tough right now. We’re going to fix this ASAP.
 
 If you try to use `wlist` without a `WLIST_CLIENT_ID` set, you’ll get gently nudged in the right direction:
