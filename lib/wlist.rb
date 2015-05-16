@@ -16,8 +16,14 @@ OPTIONS_PARSER = OptionParser.new do |opts|
   opts.on("-j ID", "--list-id ID", Integer, "Object identifier") do |v|
     OPTIONS[:list_id] = v
   end
+  opts.on("-k ID", "--task-id ID", Integer, "Object identifier") do |v|
+    OPTIONS[:task_id] = v
+  end
   opts.on("-t TITLE", "--title TITLE", "Title for a task") do |v|
     OPTIONS[:title] = v
+  end
+  opts.on("-n CONTENT", "--content CONTENT", "Content for a note") do |v|
+    OPTIONS[:content] = v
   end
   opts.on("-u URL", "--url URL", "Webhook URL") do |v|
     OPTIONS[:url] = v

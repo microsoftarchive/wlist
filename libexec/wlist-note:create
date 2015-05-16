@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+require "#{File.dirname(__FILE__)}/../lib/wlist.rb"
+
+parse_options
+
+if !STDIN.tty?
+  data = JSON.parse(ARGF.read)
+else
+  data = {}
+end
+
+data['task_id'] = OPTIONS[:task_id] if OPTIONS[:task_id]
+data['content'] = OPTIONS[:content] if OPTIONS[:content]
+
+response = post("notes", data)
+puts JSON.pretty_generate(response)
