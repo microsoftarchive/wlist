@@ -56,7 +56,7 @@ end
 def client_id
   return ENV['WLIST_CLIENT_ID'] if ENV['WLIST_CLIENT_ID']
   puts "Missing $WLIST_CLIENT_ID in environment"
-  puts "Visit https://developer.wunderlist.com/applications and create an app!"
+  puts "Visit https://developer.wunderlist.com/apps/new and create an app!"
   exit -1
 end
 

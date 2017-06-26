@@ -27,7 +27,7 @@ If you try to use `wlist` without a `WLIST_CLIENT_ID` set, you’ll get gently n
 
     $ bin/wlist inbox
     Missing $WLIST_CLIENT_ID in environment
-    Visit https://developer.wunderlist.com/applications and create an app!
+    Visit https://developer.wunderlist.com/apps/new and create an app!
 
 Likewise with the access token
 
